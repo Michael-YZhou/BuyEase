@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+// import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import HomeScreen from "./screens/HomeScreen/HomeScreen";
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
-          <HomeScreen />
+          {/* Replace the HomeScreen component with the Outlet component */}
+          <Outlet />
         </Container>
       </main>
       <Footer />
