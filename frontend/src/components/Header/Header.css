@@ -1,0 +1,4 @@
+.navbar-brand img {
+  width: 50px; /* Adjust the width of the logo */
+  height: auto; /* Keeps the aspect ratio intact */
+}
