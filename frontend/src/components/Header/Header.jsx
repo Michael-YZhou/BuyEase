@@ -1,9 +1,11 @@
+import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/logo.png";
 import "./Header.css";
 
 const Header = () => {
+  console.log(logo);
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
