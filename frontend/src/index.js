@@ -12,13 +12,16 @@ import "./assets/styles/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import ProductScreen from "./screens/ProductScreen/ProductScreen";
 
 const router = createBrowserRouter(
   // Create routes for the application using the Route component
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      {/* Add a route for the home screen */}
+      {/* Add a route for the home screen. The index prop is set to true to make this the default route */}
       <Route index={true} path="/" element={<HomeScreen />} />
+      {/* Add a route for the product screen with a dynamic parameter for the product id */}
+      <Route path="/product/:id" element={<ProductScreen />} />
     </Route>
   )
 );
