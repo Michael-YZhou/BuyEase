@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Rating from "../Rating/Rating";
 
 const Product = ({ product }) => {
-  console.log(`assets${product.image}`);
-
   return (
     <Card className="my-3 p-3 rounded">
       {/* Add a link to the product details page. Link is a component from react-router-dom */}
