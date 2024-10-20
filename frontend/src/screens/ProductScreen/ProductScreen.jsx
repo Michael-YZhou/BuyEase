@@ -1,15 +1,25 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 import Rating from "../../components/Rating/Rating";
-import products from "../../products";
+import axios from "axios";
 
 const ProductScreen = () => {
+  const [product, setProduct] = useState({});
   // get the product id from the URL using the useParams hook
   const { id: productId } = useParams();
-  // in the hardcoded products array, find the product with the same id as the one in the URL
-  const product = products.find((product) => product._id === productId);
+
+  // useEffect to fetch the product data from the backend and set the product state
+  // dependency array with productId to run the effect whenever the productId changes
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${productId}`);
+      setProduct(data);
+    };
+
+    fetchProduct();
+  }, [productId]);
 
   return (
     <>
