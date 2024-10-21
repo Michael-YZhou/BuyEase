@@ -1,9 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config(); // Load environment variables from a .env file into process.env
+import connectDB from "./config/db.js";
 import products from "./data/products.js";
-
 const port = process.env.PORT || 5000; // Default port is 5000
+
+connectDB(); // Connect to the MongoDB database
 
 // Create an express app
 const app = express();

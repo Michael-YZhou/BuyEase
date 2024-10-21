@@ -14,7 +14,8 @@
   "author": "Yang Zhou",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mongoose": "^8.7.2"
   },
   "devDependencies": {
     "concurrently": "^9.0.1",
