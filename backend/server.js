@@ -5,7 +5,7 @@ import connectDB from "./config/db.js";
 import products from "./data/products.js";
 const port = process.env.PORT || 5000; // Default port is 5000
 
-// connectDB(); // Connect to the MongoDB database
+connectDB(); // Connect to the MongoDB database
 
 // Create an express app
 const app = express();
