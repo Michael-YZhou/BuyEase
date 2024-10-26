@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Head Speed MP 2024",
     image: "/images/head_speed_mp_2024.webp",
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "2",
     name: "Wilson Blade 98 2023",
     image: "/images/wilson_blade_98.webp",
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: "3",
     name: "Yonex Ezone 98 2022",
     image: "/images/yonex_ezone_98.webp",
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "4",
     name: "Wilson US Open 3 Ball Can",
     image: "/images/wilson_us_open_3_ball_can.jpg",
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "5",
     name: "Asics Gel Resolution 9",
     image: "/images/asics_gel_resolution_9.webp",
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: "6",
     name: "Dunlop FX 8 Racquet Tennis Bag",
     image: "/images/dunlop_fx_8_racquet_tennis_bag.jpeg",
     description:
