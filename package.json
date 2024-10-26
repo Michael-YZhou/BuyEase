@@ -9,12 +9,15 @@
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "data:import": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder.js -d"
   },
   "author": "Yang Zhou",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "express": "^4.21.1",
     "mongoose": "^8.7.2"
   },
