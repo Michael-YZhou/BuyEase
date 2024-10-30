@@ -17,7 +17,7 @@ Users can effortlessly browse products, add items to their cart, and complete pu
 
 ## User Interface
 
-![User Interface Screenshot](/ui-Screenshot.jpg)
+![User Interface Screenshot](/ui-screenshot.jpg)
 
 ## Technologies Used
 
@@ -55,7 +55,7 @@ Users can effortlessly browse products, add items to their cart, and complete pu
 
 3. **Set up environment variables:**
 
-   - MONGODB_URI=your_mongo_db_uri
+   - MONGO_URI=your_mongo_db_uri
 
    - PAYPAL_CLIENT_ID=your_paypal_client_id
 
