@@ -1,74 +1,87 @@
 # BuyEase
 
-BuyEase is a dynamic and responsive e-commerce platform designed for seamless user experiences. The project features user authentication for secure account management, allowing users to register, log in, and manage their profiles. Integrated with PayPal as the payment gateway, the platform ensures secure and reliable transactions. Users can browse products, add items to their cart, and complete purchases with ease. The website's modern UI and efficient backend make it an ideal solution for online shopping.
+> **Status**: Work in Progress
 
-# Getting Started with Create React App
+## Project Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**BuyEase** is a dynamic and responsive e-commerce platform designed to deliver a seamless shopping experience. The platform enables secure user account management through authentication features, allowing users to register, log in, and manage their profiles. Integrated with PayPal as the primary payment gateway, BuyEase ensures reliable and secure transactions for all users.
 
-## Available Scripts
+Users can effortlessly browse products, add items to their cart, and complete purchases. The website's modern UI and efficient backend make it an ideal solution for online shopping.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **User Authentication**: Secure registration, login, and profile management.
+- **Payment Integration**: PayPal integration for secure and reliable payments.
+- **Product Browsing and Cart Management**: Users can explore available products, add items to their shopping cart, and checkout with ease.
+- **Responsive Design**: Mobile-friendly UI for an optimal experience across devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## User Interface
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![User Interface Screenshot](/ui-Screenshot.jpg)
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**: React
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Payment**: PayPal API integration
 
-### `npm run build`
+## Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/Michael-YZhou/BuyEase.git
+   cd buyease
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
 
-### `npm run eject`
+2. **Install dependencies:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   **Backend**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   **Frontend**
 
-## Learn More
+   ```bash
+   cd frontend
+   npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Set up environment variables:**
 
-### Code Splitting
+   - MONGODB_URI=your_mongo_db_uri
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   - PAYPAL_CLIENT_ID=your_paypal_client_id
 
-### Analyzing the Bundle Size
+   - JWT_SECRET=your_jwt_secret
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. **Start the application:**
 
-### Making a Progressive Web App
+   Backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```bash
+   npm start
 
-### Advanced Configuration
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   Frontend:
 
-### Deployment
+   ```bash
+   cd frontend
+   npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   ```
 
-### `npm run build` fails to minify
+5. **Access the application:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   Open your browser and navigate to http://localhost:3000.
+
+## License
+
+This project is licensed under the MIT License.
