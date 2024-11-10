@@ -25,7 +25,9 @@ const ProductScreen = () => {
 
   return (
     <>
-      <Link className="btn btn-light my-3">Go Back</Link>
+      <Link className="btn btn-light my-3" to="/">
+        Go Back
+      </Link>
       <Row>
         <Col md={5}>
           <Image src={product.image} alt={product.name} fluid />
