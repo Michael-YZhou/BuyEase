@@ -10,7 +10,6 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const products = await Product.find({}); // empty {} will fetch all products from the database
-    console.log(products);
     res.json(products); // Send the products data as a JSON response
   })
 );
@@ -24,6 +23,7 @@ router.get(
       res.json(product); // If there is product, send the product data as a JSON response
     }
     res.status(404); // If product is not found, send a 404 status code
+    throw new Error("Resource not found"); // and throw an error use asyncHandler to catch the error and pass it to the error handling middleware
   })
 );
 

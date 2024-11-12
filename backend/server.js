@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config(); // Load environment variables from a .env file into process.env
 import connectDB from "./config/db.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
 const port = process.env.PORT || 5000; // Default port is 5000
 
@@ -17,6 +18,12 @@ app.get("/", (req, res) => {
 
 // the /api/products route is handled by the productRoutes router
 app.use("/api/products", productRoutes);
+
+// Middleware to handle errors for routes that are not found
+app.use(notFound);
+
+// Middleware to handle errors for all routes
+app.use(errorHandler);
 
 // Start the server
 app.listen(port, () => {
