@@ -1,3 +1,4 @@
+// this will be called when no other error handling middleware is called
 const notFound = (req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`); // create a new error object with a message that includes the original URL
   res.status(404); // set the status code to 404
