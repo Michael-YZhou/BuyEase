@@ -6,7 +6,6 @@ import logo from "../../assets/logo.png";
 import "./Header.css";
 
 const Header = () => {
-  console.log(logo);
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
