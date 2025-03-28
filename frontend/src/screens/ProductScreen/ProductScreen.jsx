@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 import Loader from "../../components/Loader/Loader";
+import Message from "../../components/Message/Message";
 import { useGetProductDetailsQuery } from "../../slices/productsApiSlice";
 import Rating from "../../components/Rating/Rating";
 
@@ -28,7 +29,9 @@ const ProductScreen = () => {
           <Loader />
         ) : // if there is an error fetching the data, display an error message
         isError ? (
-          <h2>{error}</h2>
+          <Message variant="danger">
+            {error?.data?.message || error?.error}
+          </Message>
         ) : (
           // if the product exists, display the product details
 
