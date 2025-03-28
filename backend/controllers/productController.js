@@ -19,6 +19,7 @@ const getProducts = asyncHandler(async (req, res) => {
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id); // Find a product by id from the database
   if (product) {
+    console.log(product._id);
     res.json(product); // If there is product, send the product data as a JSON response
   }
   res.status(404); // If product is not found, send a 404 status code

@@ -3,8 +3,10 @@ import { BASE_URL } from "../constants";
 
 const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL });
 
+// This slice is the parent of all other slices
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery,
+  tagTypes: ["Product", "User", "Order", "Payment"],
   endpoints: (builder) => ({}),
 });

@@ -8,6 +8,7 @@ const notFound = (req, res, next) => {
 // overwrite the default Express error handler to provide a custom error message
 // pass in the error, request, response, and next middleware function
 const errorHandler = (err, req, res, next) => {
+  console.log(res.statusCode);
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode; // set the status code to the response status code or 500
   let message = err.message; // set the message to the error message
 
