@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Button,
+  Card,
+  Form,
+} from "react-bootstrap";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import { useGetProductDetailsQuery } from "../../slices/productsApiSlice";
@@ -9,6 +18,8 @@ import Rating from "../../components/Rating/Rating";
 const ProductScreen = () => {
   // get the product id from the URL using the useParams hook
   const { id: productId } = useParams();
+
+  const [qty, setQty] = useState(1); // state to manage the quantity of the product
 
   // fetch the product details using the useGetProductByIdQuery hook
   const {
@@ -70,6 +81,30 @@ const ProductScreen = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
+
+                  {/* if the product is in stock, display a quantity selector, otherwise display "Out of Stock" */}
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Qty</Col>
+                        <Col>
+                          <Form.Control
+                            as="select"
+                            value={qty}
+                            onChange={(e) => setQty(Number(e.target.value))}
+                          >
+                            {[...Array(product.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
 
                   <ListGroup.Item>
                     <Row>
