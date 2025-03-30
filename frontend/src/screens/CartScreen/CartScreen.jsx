@@ -12,7 +12,7 @@ import {
 import { FaTrash } from "react-icons/fa";
 import Message from "../../components/Message/Message";
 import { formatDecimals } from "../../utils/cartUtils";
-import { addToCart } from "../../slices/cartSlice";
+import { addToCart, removeFromCart } from "../../slices/cartSlice";
 
 function CartScreen() {
   const navigate = useNavigate();
@@ -24,6 +24,10 @@ function CartScreen() {
 
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
+  };
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
   };
   return (
     <Row>
@@ -62,7 +66,13 @@ function CartScreen() {
                     </Form.Control>
                   </Col>
                   <Col md={1}>
-                    <Button type="button" variant="light" onClick={() => {}}>
+                    <Button
+                      type="button"
+                      variant="light"
+                      onClick={() => {
+                        removeFromCartHandler(item._id);
+                      }}
+                    >
                       <FaTrash />
                     </Button>
                   </Col>
