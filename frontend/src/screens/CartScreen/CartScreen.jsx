@@ -29,6 +29,12 @@ function CartScreen() {
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
+
+  // Check if the user is logged in before proceeding to checkout
+  // If not, redirect to the login page with a redirect query parameter set to "shipping"
+  const checkOutHandler = () => {
+    navigate("/login?redirect=shipping");
+  };
   return (
     <Row>
       <Col md={8}>
@@ -100,7 +106,7 @@ function CartScreen() {
                 type="button"
                 className="btn-block"
                 disabled={cartItems.length === 0}
-                onClick={() => {}}
+                onClick={checkOutHandler}
               >
                 Proceed to Checkout
               </Button>
