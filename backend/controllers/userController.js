@@ -7,7 +7,25 @@ import User from "../models/userModel.js"; // Import the Product model
  * @access Public
  */
 const authUser = asyncHandler(async (req, res) => {
-  res.send("Auth user");
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email: email });
+
+  if (user && (await user.matchPassword(password))) {
+    // If user exists and password matches, send user data and token
+    // The getSignedJwtToken method is a custom method defined in the User model that generates a JWT token
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      // token: user.getSignedJwtToken(), // Generate JWT token
+    });
+  } else {
+    // If user doesn't exist or password doesn't match, send an error response
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
 });
 
 /**

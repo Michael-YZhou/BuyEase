@@ -12,6 +12,10 @@ connectDB(); // Connect to the MongoDB database
 // Create an express app
 const app = express();
 
+// Middleware to parse JSON request bodies
+app.use(express.json()); // Parse raw JSON bodies (as sent by API clients)
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies (as sent by HTML forms)
+
 // Create a route for the homepage
 app.get("/", (req, res) => {
   res.send("API is running...");
