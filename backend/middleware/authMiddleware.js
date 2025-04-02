@@ -7,7 +7,7 @@ this is a protect middleware to protect private routes
 his middleware checks if the user is authenticated by verifying the JWT token
 and attaches the user information to the request object if authenticated
 */
-export const protect = asyncHandler(async (req, res, next) => {
+const protect = asyncHandler(async (req, res, next) => {
   let token;
 
   token = req.cookies.jwt; // Get token from cookies
@@ -35,3 +35,14 @@ this is an admin middleware to protect admin routes
 this middleware checks if the user is an admin by checking the isAdmin field in the user object
 and allows access to the route if the user is an admin
 */
+
+const admin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next(); // If user is admin, hand the request to the next middleware or route handler
+  } else {
+    res.status(401); // If user is not admin, send unauthorized error
+    throw new Error("Not authorized as an admin");
+  }
+};
+
+export { protect, admin };
