@@ -61,7 +61,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     expires: new Date(0), // Set expiration date to the past to clear the cookie
   });
 
-  // res.status(200).json({ message: "Logged out successfully" });
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 /**
