@@ -1,6 +1,6 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js"; // Import the Product model
-import jwt from "jsonwebtoken"; // Import the jsonwebtoken library
+import generateToken from "../utils/generateToken.js"; // Import the generateToken function
 
 /**
  * @desc Auth uer & get token
@@ -14,18 +14,9 @@ const authUser = asyncHandler(async (req, res) => {
 
   if (user && (await user.matchPassword(password))) {
     // If user exists and password matches, send user data and token
-    // The getSignedJwtToken method is a custom method defined in the User model that generates a JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "30d",
-    }); // Generate JWT token
-    // Set the JWT in a cookie with options
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Set to true if in production to use secure cookies with HTTPS
-      sameSite: "Strict", // Set SameSite attribute to Strict to prevent CSRF attacks
-      maxAge: 30 * 24 * 60 * 60 * 1000, // Set cookie expiration to 30 days in milliseconds
-    });
-    res.json({
+    // The generateToken method is a custom method defined in the User model that generates a JWT token
+    generateToken(res, user._id); // Set the JWT in a cookie
+    res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -57,6 +48,9 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({ name, email, password });
 
   if (user) {
+    // If user is created successfully, send user data and token
+    generateToken(res, user._id); // Set the JWT in a cookie
+
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -88,7 +82,19 @@ const logoutUser = asyncHandler(async (req, res) => {
  * @access Private
  */
 const getUserProfile = asyncHandler(async (req, res) => {
-  res.send("Get user profile");
+  // The req.user object is populated by the protect middleware after verifying the token
+  const user = await User.findById(req.user._id);
+  if (user) {
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 /**
@@ -97,7 +103,29 @@ const getUserProfile = asyncHandler(async (req, res) => {
  * @access Private
  */
 const updateUserProfile = asyncHandler(async (req, res) => {
-  res.send("Update user profile");
+  // The req.user object is populated by the protect middleware after verifying the token
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name; // Update name if provided, otherwise keep the existing name
+    user.email = req.body.email || user.email; // Update email if provided, otherwise keep the existing email
+
+    if (req.body.password) {
+      user.password = req.body.password; // Update password if provided
+    }
+
+    const updatedUser = await user.save(); // Save the updated user to the database
+
+    res.status(200).json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 /**

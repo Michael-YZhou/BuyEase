@@ -67,7 +67,7 @@
    
 4. Since the token is in the cookie, all future requests will contain this JWT in the cookie for authentication.
 
-   **Create** **authMiddleware** at the backend to protect private routes and Admin routes by check the token:
+   **Create** **authMiddleware** at the backend to protect private routes and Admin routes by verify the token:
 
    ```js
    // in authMiddleware.js
