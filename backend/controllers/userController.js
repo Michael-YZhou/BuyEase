@@ -45,7 +45,25 @@ const authUser = asyncHandler(async (req, res) => {
  * @access Public
  */
 const registerUser = asyncHandler(async (req, res) => {
-  res.send("Register user");
+  const { name, email, password } = req.body;
+
+  const userExists = await User.findOne({ email });
+  // Check if the user already exists in the database
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+  // Create a new user if it doesn't exist
+  const user = await User.create({ name, email, password });
+
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  }
 });
 
 /**
