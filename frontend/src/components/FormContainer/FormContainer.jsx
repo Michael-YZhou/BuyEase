@@ -6,7 +6,7 @@ function FormContainer({ children }) {
   return (
     <Container>
       {/* on medium screen, justify the content to the center */}
-      <Row className="justify-container-md-center">
+      <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           {children}
         </Col>

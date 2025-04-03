@@ -16,6 +16,7 @@ import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import CartScreen from "./screens/CartScreen/CartScreen";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
 const router = createBrowserRouter(
   // Create routes for the application using the Route component
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       {/* Add a route for the product screen with a dynamic parameter for the product id */}
       <Route path="/product/:id" element={<ProductScreen />} />
       <Route path="/cart" element={<CartScreen />} />
+      <Route path="login" element={<LoginScreen />} />
     </Route>
   )
 );
