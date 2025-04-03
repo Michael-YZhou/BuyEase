@@ -54,7 +54,14 @@ const registerUser = asyncHandler(async (req, res) => {
  * @access Private
  */
 const logoutUser = asyncHandler(async (req, res) => {
-  res.send("Logout user");
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Strict",
+    expires: new Date(0), // Set expiration date to the past to clear the cookie
+  });
+
+  // res.status(200).json({ message: "Logged out successfully" });
 });
 
 /**
