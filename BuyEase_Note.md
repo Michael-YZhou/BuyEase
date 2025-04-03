@@ -184,5 +184,60 @@
    });
    ```
 
-   
 
+
+## Update User Detail
+
+1. Create a Mongoose pre-save middleware in userModel.js to hash the password before send to MongoDB
+
+   ```js
+   // in userModel.js
+   // Add a pre-save hook to the schema which will hash the password before saving it to the database
+   userSchema.pre("save", async function (next) {
+     if (!this.isModified("password")) {
+       return next(); // If not modifying password, skip hashing
+     }
+   
+     const salt = await bcrypt.genSalt(10); // Generate a salt with 10 rounds of hashing
+     this.password = await bcrypt.hash(this.password, salt); // Hash the password with the salt
+   });
+   ```
+
+2. Implement the updateUserProfile controller in userController.js
+
+   ```js
+   /**
+    * @desc Update user profile
+    * @route PUT /api/users/profile
+    * @access Private
+    */
+   const updateUserProfile = asyncHandler(async (req, res) => {
+     // The req.user object is populated by the protect middleware after verifying the token
+     const user = await User.findById(req.user._id);
+   
+     if (user) {
+       user.name = req.body.name || user.name; // Update name if provided, otherwise keep the existing name
+       user.email = req.body.email || user.email; // Update email if provided, otherwise keep the existing email
+   
+       if (req.body.password) {
+         user.password = req.body.password; // Update password if provided
+       }
+   
+       const updatedUser = await user.save(); // Save the updated user to the database
+   
+       res.status(200).json({
+         _id: updatedUser._id,
+         name: updatedUser.name,
+         email: updatedUser.email,
+         isAdmin: updatedUser.isAdmin,
+       });
+     } else {
+       res.status(404);
+       throw new Error("User not found");
+     }
+   });
+   ```
+
+3. add the updateUserProfile controller to the /users/profile route when receive a PUT request.
+
+   
