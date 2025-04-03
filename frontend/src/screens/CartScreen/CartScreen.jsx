@@ -20,8 +20,6 @@ function CartScreen() {
 
   const { cartItems } = useSelector((state) => state.cart);
 
-  const cart = useSelector((state) => state.cart);
-
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
   };
@@ -33,7 +31,7 @@ function CartScreen() {
   // Check if the user is logged in before proceeding to checkout
   // If not, redirect to the login page with a redirect query parameter set to "shipping"
   const checkOutHandler = () => {
-    navigate("/login?redirect=shipping");
+    navigate("/login?redirect=/shipping");
   };
   return (
     <Row>

@@ -12,6 +12,29 @@ function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  // Check if user is already logged in and redirect if necessary
+  // search the URL for the redirect parameter
+  // if it exists, redirect to that URL after login
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const redirect = searchParams.get("redirect") || "/";
+  // click on the Checkout button in the Cart page will redirect to login page
+  // and after login, redirect to /shipping page
+  useEffect =
+    (() => {
+      if (userInfo) {
+        navigate(redirect);
+      }
+    },
+    [userInfo, navigate, redirect]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("submitHandler called");
