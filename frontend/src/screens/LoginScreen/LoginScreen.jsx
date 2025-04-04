@@ -27,17 +27,24 @@ function LoginScreen() {
   const redirect = searchParams.get("redirect") || "/";
   // click on the Checkout button in the Cart page will redirect to login page
   // and after login, redirect to /shipping page
-  useEffect =
-    (() => {
-      if (userInfo) {
-        navigate(redirect);
-      }
-    },
-    [userInfo, navigate, redirect]);
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [userInfo, navigate, redirect]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submitHandler called");
+    // Call the login mutation with the email and password
+    try {
+      const res = await login({ email, password }).unwrap();
+      console.log(res);
+      dispatch(setCredentials({ ...res }));
+      navigate(redirect); // Redirect to the specified page after login
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
@@ -64,14 +71,25 @@ function LoginScreen() {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="mt-2">
+        <Button
+          type="submit"
+          variant="primary"
+          className="mt-2"
+          disabled={isLoading}
+        >
           Sign In
         </Button>
+
+        {/* Show loader when logging in */}
+        {isLoading && <Loader />}
       </Form>
 
       <Row className="py-3">
         <Col>
-          New Customer? <Link to="/register">Register</Link>
+          New Customer?{" "}
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+            Register
+          </Link>
         </Col>
       </Row>
     </FormContainer>
