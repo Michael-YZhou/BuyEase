@@ -19,7 +19,7 @@ const router = express.Router();
 // router.route() can define multiple actions on a single route
 // add the protect middleware to the routes that require authentication
 // and the admin middleware to the routes that require admin privileges
-router.route("/").post(registerUser).get(protect, admin, getUsers); // Fetch all users
+router.route("/register").post(registerUser).get(protect, admin, getUsers); // Fetch all users
 router.post("/logout", logoutUser); // Logout user
 router.post("/login", authUser); // Login user
 router

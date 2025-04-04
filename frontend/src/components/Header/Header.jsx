@@ -19,11 +19,8 @@ const Header = () => {
 
   const logoutHandler = async () => {
     try {
-      console.log("Logging out...");
       await logoutApiMutation().unwrap(); // call the logout API to invalidate the token on the server
-      console.log("Logout API called successfully");
       dispatch(logout()); // dispatch the logout action to reset userInfo in the store
-      console.log("dispatched logout action");
       navigate("/login");
     } catch (err) {
       console.error(err);
