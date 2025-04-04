@@ -1,8 +1,10 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useLogoutMutation } from "../../slices/usersApiSlice";
+import { logout } from "../../slices/authSlice";
 import logo from "../../assets/logo.png";
 import "./Header.css";
 
@@ -10,8 +12,22 @@ const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
 
-  const logoutHandler = () => {
-    console.log("Logout");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiMutation] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      console.log("Logging out...");
+      await logoutApiMutation().unwrap(); // call the logout API to invalidate the token on the server
+      console.log("Logout API called successfully");
+      dispatch(logout()); // dispatch the logout action to reset userInfo in the store
+      console.log("dispatched logout action");
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
